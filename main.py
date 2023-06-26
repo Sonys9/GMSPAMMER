@@ -41,7 +41,7 @@ def main():
 
             target = input('\nВведите почту на которую обрушится спам:     ').replace('\n', '').replace('\r', '')
             circles = int(input('Введите количество кругов:     '))
-            msg = input('Введите сообщение которое будет отправляться:     ').replace('\n', '').replace('\r', '')
+            msg2 = input('Введите сообщение которое будет отправляться:     ').replace('\n', '').replace('\r', '')
             print('\nСпам был успешно начат!')
             for i in range(circles):
                 print(f'\nКруг {i} был начат!\n')
@@ -52,8 +52,8 @@ def main():
                 for i in range(len(json1)):
                     login = json1[f'acc{i}']['login']
                     password = json1[f'acc{i}']['password'] 
-                    subject = f"{msg}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
-                    body = f"{msg}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
+                    subject = f"{msg2}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
+                    body = f"{msg2}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
                     msg = EmailMessage()
                     msg.set_content(body)
                     msg["Subject"] = subject
