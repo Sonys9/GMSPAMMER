@@ -52,8 +52,8 @@ def main():
                 for i in range(len(json1)):
                     login = json1[f'acc{i}']['login']
                     password = json1[f'acc{i}']['password'] 
-                    subject = f"{msg}{random.randint(100,999999)}"
-                    body = f"{msg}{random.randint(100,999999)}"
+                    subject = f"{msg}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
+                    body = f"{msg}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
                     msg = EmailMessage()
                     msg.set_content(body)
                     msg["Subject"] = subject
