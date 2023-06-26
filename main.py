@@ -13,7 +13,7 @@ def logo():
 ██║░░╚██╗██║╚██╔╝██║░╚═══██╗██╔═══╝░██╔══██║██║╚██╔╝██║██║╚██╔╝██║██╔══╝░░██╔══██╗
 ╚██████╔╝██║░╚═╝░██║██████╔╝██║░░░░░██║░░██║██║░╚═╝░██║██║░╚═╝░██║███████╗██║░░██║
 ░╚═════╝░╚═╝░░░░░╚═╝╚═════╝░╚═╝░░░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚═╝''')
-        with open(os.path.join(os.getcwd(), 'accounts.json'), 'r', encoding='utf-8') as f:
+        with open(os.path.join(os.getcwd(), 'accounts.json'), 'r') as f:
             json1 = json.loads(f.read())
             allaccounts=0
             for i in range(len(json1)):
@@ -24,18 +24,18 @@ def logo():
             login = input('\nВведите логин от аккаунта Microsoft:     ')
             password = input('Введите пароль от аккаунта Microsoft:     ')
 
-            with open(os.path.join(os.getcwd(), 'accounts.json'), 'r', encoding='utf-8') as f:
+            with open(os.path.join(os.getcwd(), 'accounts.json'), 'r') as f:
                 json1 = json.loads(f.read())
 
             allaccs = f'acc{len(json1)}'
             json1[allaccs] = {'login': login, 'password': password}
 
-            with open(os.path.join(os.getcwd(), 'accounts.json'), 'w', encoding='utf-8') as json_file:
+            with open(os.path.join(os.getcwd(), 'accounts.json'), 'w') as json_file:
                 json.dump(json1, json_file, ensure_ascii=False, indent=4)
 
         if choice == 2:
 
-            with open(os.path.join(os.getcwd(), 'accounts.json'), 'r', encoding='utf-8') as f:
+            with open(os.path.join(os.getcwd(), 'accounts.json'), 'r') as f:
                 input(f'\nВсе доступные аккаунты Microsoft в JSON формате: {f.read()}\nНажмите ENTER для продолжения!')
 
         if choice == 3:
@@ -47,7 +47,7 @@ def logo():
             for i in range(circles):
                 print(f'\nКруг {i} был начат!\n')
 
-                with open(os.path.join(os.getcwd(), 'accounts.json'), 'r', encoding='utf-8') as f:
+                with open(os.path.join(os.getcwd(), 'accounts.json'), 'r') as f:
                     json1 = json.load(f)
 
                 for i in range(len(json1)):
