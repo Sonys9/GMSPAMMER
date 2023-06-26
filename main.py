@@ -1,6 +1,6 @@
 # YT: https://www.youtube.com/@user-om8sm3ty3g/
 
-import smtplib, random, os, json, time
+import smtplib, random, os, json, time, threading
 from colorama import Fore, init
 from email.message import EmailMessage
 init()
@@ -50,25 +50,29 @@ def main():
                     json1 = json.load(f)
 
                 for i in range(len(json1)):
-                    login = json1[f'acc{i}']['login']
-                    password = json1[f'acc{i}']['password'] 
-                    subject = f"{msg2}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
-                    body = f"{msg2}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
-                    msg = EmailMessage()
-                    msg.set_content(body)
-                    msg["Subject"] = subject
-                    msg["From"] = login
-                    msg["To"] = target
-                    try:
-                        server = smtplib.SMTP("smtp.office365.com", 587)
-                        server.starttls()
-                        server.login(login, password)
-                        server.send_message(msg)
-                        server.quit()
-                        print(f"{Fore.GREEN}Письмо успешно отправлено!(Заголовок: {subject}, Текст: {body})")
-                    except Exception as e:
-                        print(f"{Fore.RED}Ошибка при отправке письма: {e}")
-                    time.sleep(1)
+                    def spam():
+                        login = json1[f'acc{i}']['login']
+                        password = json1[f'acc{i}']['password'] 
+                        subject = f"{msg2}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
+                        body = f"{msg2}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
+                        msg = EmailMessage()
+                        msg.set_content(body)
+                        msg["Subject"] = subject
+                        msg["From"] = login
+                        msg["To"] = target
+                        try:
+                            server = smtplib.SMTP("smtp.office365.com", 587)
+                            server.starttls()
+                            server.login(login, password)
+                            server.send_message(msg)
+                            server.quit()
+                            print(f"{Fore.GREEN}Письмо успешно отправлено!(Заголовок: {subject}, Текст: {body})")
+                        except Exception as e:
+                            print(f"{Fore.RED}Ошибка при отправке письма: {e}")
+                        time.sleep(1)
+                    threading.Thread(target=spam).start()
+                time.sleep(3)
+                    
     
 while True:
     os.system('cls' if os.name == 'nt' else 'clear')
