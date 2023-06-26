@@ -5,8 +5,7 @@ from colorama import Fore, init
 from email.message import EmailMessage
 init()
 
-def logo():
-    try:
+def main():
         print(f'''{Fore.RED}YT: https://www.youtube.com/@user-om8sm3ty3g/\n░██████╗░███╗░░░███╗░██████╗██████╗░░█████╗░███╗░░░███╗███╗░░░███╗███████╗██████╗░
 ██╔════╝░████╗░████║██╔════╝██╔══██╗██╔══██╗████╗░████║████╗░████║██╔════╝██╔══██╗
 ██║░░██╗░██╔████╔██║╚█████╗░██████╔╝███████║██╔████╔██║██╔████╔██║█████╗░░██████╔╝
@@ -40,9 +39,9 @@ def logo():
 
         if choice == 3:
 
-            target = input('\nВведите почту на которую обрушится спам:     ')
+            target = input('\nВведите почту на которую обрушится спам:     ').replace('\n', '').replace('\r', '')
             circles = int(input('Введите количество кругов:     '))
-            msg = input('Введите сообщение которое будет отправляться:     ')
+            msg = input('Введите сообщение которое будет отправляться:     ').replace('\n', '').replace('\r', '')
             print('\nСпам был успешно начат!')
             for i in range(circles):
                 print(f'\nКруг {i} был начат!\n')
@@ -70,9 +69,7 @@ def logo():
                     except Exception as e:
                         print(f"{Fore.RED}Ошибка при отправке письма: {e}")
                     time.sleep(1)
-    except Exception as e:
-        input(f'{Fore.RED}\nОшибка: {e}\nНажмите ENTER для продолжения!')
     
 while True:
     os.system('cls' if os.name == 'nt' else 'clear')
-    logo()
+    main()
