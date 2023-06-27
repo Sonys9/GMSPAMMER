@@ -17,7 +17,7 @@ def main():
             allaccounts=0
             for i in range(len(json1)):
                 allaccounts+=1
-        choice = int(input(f'GMAIL SPAMMER (Доступно {allaccounts} аккаунтов)\n\n[1] Добавить спам аккаунт Microsoft\n[2] Вывести все доступные аккаунты Microsoft в JSON формате\n[3] Начать спам на почту\nВведите ваше действие:  '))
+        choice = int(input(f'GMAIL SPAMMER (Доступно {allaccounts} аккаунтов)\n\n[1] Добавить спам аккаунт Microsoft\n[2] Вывести все доступные аккаунты Microsoft в JSON формате\n[3] Удалить ключ JSON(аккаунт)\n[4] Начать спам на почту\nВведите ваше действие:  '))
         if choice == 1:
 
             login = input('\nВведите логин от аккаунта Microsoft:     ')
@@ -38,6 +38,19 @@ def main():
                 input(f'\nВсе доступные аккаунты Microsoft в JSON формате: {f.read()}\nНажмите ENTER для продолжения!')
 
         if choice == 3:
+            
+            key = input('\nВведите ключ JSON:     ')
+
+            with open(os.path.join(os.getcwd(), 'accounts.json'), 'r') as f:
+                json1 = json.loads(f.read())
+
+            if key in json1:
+                del json1[key]
+
+                with open(os.path.join(os.getcwd(), 'accounts.json'), 'w') as f:
+                    f.write(json.dumps(json1, ensure_ascii=False))
+
+        if choice == 4:
 
             target = input('\nВведите почту на которую обрушится спам:     ').replace('\n', '').replace('\r', '')
             circles = int(input('Введите количество кругов:     '))
