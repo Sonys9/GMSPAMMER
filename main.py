@@ -62,10 +62,10 @@ def main():
                 with open(os.path.join(os.getcwd(), 'accounts.json'), 'r') as f:
                     json1 = json.load(f)
 
-                for i in range(len(json1)):
+                for i in list(json1.keys()):
                     def spam():
-                        login = json1[f'acc{i}']['login']
-                        password = json1[f'acc{i}']['password'] 
+                        login = json1[i]['login']
+                        password = json1[i]['password'] 
                         subject = f"{msg2}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
                         body = f"{msg2}{random.randint(100,999999)}".replace('\n', '').replace('\r', '')
                         msg = EmailMessage()
